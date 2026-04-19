@@ -4,7 +4,7 @@ metadata:
   name: my-app
   namespace: my-namespace  # ネームスペース名の指定
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: my-app
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: my-app
-          image: my-app:latest
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: Never
           ports:
             - containerPort: 80
